@@ -1,6 +1,6 @@
 ---
 title: Install an Error Tracking Agent
-description: This topic explains the steps to install an Error Tracking Agent on a Java Application.
+description: Learn how to install an Error Tracking Agent on a Java Application.
 sidebar_position: 20
 helpdocs_topic_id: nx99xfcoxz
 helpdocs_category_id: c40ko6e87n
