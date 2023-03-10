@@ -353,6 +353,6 @@ spec:
           volumes:
             - name: config-volume
               configMap:
-                name: my-secret-upgrader-config
+                name: my-secret-upgrader-config dck;dsckds
 
 ```
