@@ -16,7 +16,7 @@ Harness Cloud is available with all CI plans. For more information, go to [Use H
 
 ## Self-hosted options
 
-Self-hosted build infrastructure options include local machines, Kubernetes clusters, and VMs from Cloud providers, such as AWS.
+Self-hosted build infrastructure options include local machines, Kubernetes clusters, and VMs from cloud providers, such as AWS.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -62,7 +62,7 @@ This option is available only with paid CI plans.
 
 :::
 
-Your build infrastructure can use VMs from a Cloud provider, including AWS, Microsoft Azure, GCP, and Anka (for macOS build farms).
+Your build infrastructure can use VMs from a cloud provider, including AWS, Microsoft Azure, GCP, and Anka (for macOS build farms).
 
 To learn more about VM build infrastructures, go to [Set up VM build infrastructures](/docs/category/set-up-vm-build-infrastructures).
 
@@ -75,7 +75,7 @@ To learn more about VM build infrastructures, go to [Set up VM build infrastruct
 
 The following table shows the supported operating systems and architectures for each build infrastructure option.
 
-| Operating system | Architecture | Harness Cloud | Self-hosted local runner | Self-hosted Kubernetes cluster | Self-hosted Cloud provider VMs |
+| Operating system | Architecture | Harness Cloud | Self-hosted local runner | Self-hosted Kubernetes cluster | Self-hosted cloud provider VMs |
 | -  | - | - | - | - | - |
 | Linux | amd64 | ✅ Supported | ✅ Supported | ✅ Supported | ✅ Supported |
 | Linux | arm64 | ✅ Supported | ✅ Supported | ✅ Supported | ✅ Supported |
@@ -87,7 +87,7 @@ The following table shows the supported operating systems and architectures for 
 
 Some Harness CI features are not compatible with all build infrastructures or platforms. New features are rolled out for Harness Cloud first before being enabled for other build infrastructures.
 
-| Feature | Harness Cloud | Self-hosted local runner | Self-hosted Kubernetes cluster | Self-hosted Cloud provider VMs |
+| Feature | Harness Cloud | Self-hosted local runner | Self-hosted Kubernetes cluster | Self-hosted cloud provider VMs |
 | - | - | - | - | - |
 | Test Intelligence | ✅ Supported | ✅ Supported | ✅ Supported | ✅ Supported |
 | Test Parallelism | ✅ Supported | ✅ Supported | ✅ Supported | ✅ Supported |
