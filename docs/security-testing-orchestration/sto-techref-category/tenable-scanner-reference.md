@@ -41,4 +41,3 @@ import StoLegacyInstance from './shared/legacy/_sto-ref-legacy-instance.md';
 ```
 
 <StoLegacyInstance />
-
