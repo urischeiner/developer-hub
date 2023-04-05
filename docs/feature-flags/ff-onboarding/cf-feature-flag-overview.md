@@ -1,5 +1,5 @@
 ---
-title: Overview of Feature Flags
+title: Feature Flags Overview
 description: An overview of how Harness Feature Flags work
 sidebar_position: 10
 helpdocs_topic_id: 7n9433hkc0
@@ -22,12 +22,6 @@ A Feature Flag is a decision point in your code that can change the behavior of 
 * Who can test the changes
 * Progressive rollouts of the feature
 * Turn on a feature on a specific date
-
-Watch this video for an introduction to Feature Flags:
-
-<!-- Video:
-https://www.loom.com/share/0ff74ed44f7c44a6b33c4d3b83046695-->
-<docvideo src="https://www.loom.com/share/0ff74ed44f7c44a6b33c4d3b83046695" /> 
 
 ## Reasons to use Feature Flags
 

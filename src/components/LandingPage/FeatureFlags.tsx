@@ -3,8 +3,44 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.scss";
-import TutorialCard from "./TutorialCard";
-import { FeaturedList, FFList } from "./data/featureFlagsData";
+import TutorialCard, { CardItem, docType } from "./TutorialCard";
+
+/* Define the cards here */
+const FeaturedList: CardItem[] = [
+  {
+    title: "TypeScript and React Feature Flags",
+    module: "ff",
+    icon: "img/icon_ff.svg",
+    description: (
+      <>
+        Walks you through adding JavaScript Feature Flags to a TypeScript and
+        React Application.
+      </>
+    ),
+    newDoc: true,
+    type: [docType.Documentation],
+    time: "10min",
+    link: "/tutorials/manage-feature-flags/typescript-react-first-feature-flag",
+  },
+];
+
+const FFList: CardItem[] = [
+  {
+    title: "TypeScript and React Feature Flags",
+    module: "ff",
+    icon: "img/icon_ff.svg",
+    description: (
+      <>
+        Walks you through adding JavaScript Feature Flags to a TypeScript and
+        React Application.
+      </>
+    ),
+    newDoc: false,
+    type: [docType.Documentation],
+    time: "10min",
+    link: "/tutorials/manage-feature-flags/typescript-react-first-feature-flag",
+  },
+];
 
 export default function FF() {
   const { siteConfig: { baseUrl = "/" } = {} } = useDocusaurusContext();
@@ -68,7 +104,8 @@ export default function FF() {
                 className={clsx("button button--lg", styles.btn, styles.btnFF)}
                 to="#all-tutorials"
               >
-                Tutorials <i className="fa-solid fa-arrow-right"></i>
+                Tutorials
+                <img src={`${baseUrl}img/Stroke.svg`} />
               </Link>
               <Link href="https://harness.io/products/feature-flags">
                 <button className={styles.link}>Learn more</button>

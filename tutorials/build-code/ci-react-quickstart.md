@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 90
 description: Build and test a sample React application in a CI pipeline.
 keywords: [Hosted Build, Continuous Integration, Developer Guide, CI Tutorial]
 ---

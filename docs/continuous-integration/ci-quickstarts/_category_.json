@@ -1,12 +1,12 @@
 {
-   "label":"Get started with CI",
+   "label":"Onboard with CI",
    "position": 10,
    "collapsible":"true",
    "collapsed":"true",
    "className":"red",
    "link":{
       "type":"generated-index",
-      "title":"Get started with CI"
+      "title":"Onboard with CI"
    },
    "customProps":{
       

@@ -5,7 +5,6 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import "rc-tooltip/assets/bootstrap.css";
 import styles from "./CertCard.module.scss";
-import { MODULES } from "../../constants";
 
 export enum certType {
   Developer = "Developers",
@@ -20,7 +19,7 @@ const stars = {
 
 export type CardItem = {
   title: string;
-  module: MODULES;
+  module: string;
   type?: certType;
   description: JSX.Element | string;
   version?: string;
@@ -54,7 +53,7 @@ export default function CertCard({
             {type ? type : module.toUpperCase()}
           </h6>
           <span>
-            {[...new Array(stars[type || ""] || 0)].map(() => (
+            {[...new Array(stars[type] || 0)].map(() => (
               <i className="fa-solid fa-star"></i>
             ))}
           </span>

@@ -1,23 +1,30 @@
 import React from "react";
-import clsx from "clsx";
+// import clsx from 'clsx';
 import Tooltip from "rc-tooltip";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import "rc-tooltip/assets/bootstrap.css";
 import styles from "./TutorialCard.module.scss";
-import { MODULES } from "../../constants";
 
 export enum docType {
   Documentation = "doc",
   Interactive = "interactive",
   Video = "video",
-  SaaS = "saas",
-  SelfManaged = "selfmanaged",
 }
 
 export type CardItem = {
   title: string;
-  module: MODULES;
+  module:
+    | "platform"
+    | "ci"
+    | "cd"
+    | "ce"
+    | "ccm"
+    | "ff"
+    | "sto"
+    | "srm"
+    | "idp"
+    | "sei";
   description: JSX.Element | string;
   icon?: string;
   type?: docType[];
@@ -25,7 +32,6 @@ export type CardItem = {
   newDoc?: boolean;
   link?: string;
   featuredCard?: boolean;
-  difficulty?: number; // [1, 3]
 };
 
 export type CardSections = {
@@ -44,7 +50,6 @@ function Card({
   module,
   featuredCard,
   link = "#",
-  difficulty,
 }: CardItem) {
   const { siteConfig: { baseUrl = "/" } = {} } = useDocusaurusContext();
   return (
@@ -69,7 +74,7 @@ function Card({
         <h4>{title}</h4>
         <p>{description}</p>
         {type && (
-          <div className={styles.tags}>
+          <div>
             <ul className={styles.docTypes}>
               {type.map((props, idx) => (
                 <li>
@@ -82,18 +87,6 @@ function Card({
                 </li>
               ))}
             </ul>
-            {difficulty ? (
-              <div className={styles.difficulty}>
-                Difficulty |
-                {[...new Array(3)].map((star, idx) => (
-                  <i
-                    className={clsx("fa-solid", "fa-square", {
-                      [styles.lit]: difficulty > idx,
-                    })}
-                  ></i>
-                ))}
-              </div>
-            ) : null}
           </div>
         )}
       </div>

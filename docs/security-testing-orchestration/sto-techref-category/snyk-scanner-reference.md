@@ -5,7 +5,9 @@ sidebar_position: 290
 ---
 
 
-Harness STO supports the following scan types for the following Snyk products:
+You can set up a Security step with [SonarQube SonarScanner](https://docs.sonarqube.org/latest/) to analyze your code repos and ensure that they are secure, reliable, readable, and modular, among other key attributes.
+
+STO supports the following scan types for the following Snyk products:
 * Snyk Open Source — `orchestratedScan` and `ingestionOnly` 
 * Snyk Code  —  `ingestionOnly` 
 * Snyk Container  — `ingestionOnly` 
@@ -199,7 +201,6 @@ import StoSecurityStepConfig from './shared/legacy/_sto-ref-security-step-config
 * `product_access_token`
 * `product_config_name` = `default`
 * `snyk_api` = URL to the Snyk instance, if you're using an on-prem installation.
-* `fail_on_severity` - See [Fail on Severity](#fail-on-severity).
 
 
 ### Container Image scan settings

@@ -1,8 +1,8 @@
 ---
-title: Get started with Test Intelligence
+title: Test Intelligence
 description: Reduce unit test time by running only relevant unit tests.
 
-sidebar_position: 40
+# sidebar_position: 2
 helpdocs_topic_id: vtu9k1dsfa
 helpdocs_category_id: pjovrkldfq
 helpdocs_is_private: false
