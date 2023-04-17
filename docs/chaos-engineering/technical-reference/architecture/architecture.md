@@ -1,5 +1,5 @@
 ---
-title: Architecture
+title: Introduction
 sidebar_position: 1
 ---
 This section describes the Harness Chaos Engineering (HCE) architecture along with the components.
