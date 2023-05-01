@@ -42,7 +42,7 @@ Several of these resources are also prerequisites for Harness AMI [Basic](ami-de
 For an AMI Canary deployment, you must set up the following resources up within Amazon Web Services:
 
 * A working AMI that Harness will use to create your instances.
-* At least one [Application Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/application/introduction.html) (ALB) or [Classic Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/classic/introduction.html). (See the [Spotinst documentation](https://docs.spot.io/elastigroup/tools-integrations/aws-load-balancers-elb-alb) for Load Balancer support.)
+* At least one [Application Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/application/introduction.html) (ALB) or [Classic Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/classic/introduction.html). (See the [Spotinst documentation](https://docs.spot.io) for Load Balancer support.)
 
 An AMI Blue/Green deployment has these further requirements:
 
@@ -56,7 +56,7 @@ Within Spotinst, you must configure at least one Elastigroup cluster that matche
 
 ![](./static/ami-elastigroup-80.png)
 
-For details, see [Spotinst tutorials](https://docs.spot.io/elastigroup/tutorials/).
+For details, see [Spotinst tutorials](https://docs.spot.io).
 
 
 ### Harness Prerequisites

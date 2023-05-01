@@ -21,7 +21,7 @@ Before learning about Harness AWS Spotinst Elastigroup deployments, you should h
 A Harness AWS Spotinst Elastigroup deployment requires the following:
 
 * In AWS:
-	+ For an AMI Canary deployment, you must set up a working AMI that Harness will use to create your instances and at least one  [Application Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/application/introduction.html) (ALB) or  [Classic Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/classic/introduction.html). (See the  [Spotinst documentation](https://docs.spot.io/elastigroup/tools-integrations/aws-load-balancers-elb-alb) for Load Balancer support.)
+	+ For an AMI Canary deployment, you must set up a working AMI that Harness will use to create your instances and at least one  [Application Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/application/introduction.html) (ALB) or  [Classic Load Balancer](https://docs.aws.amazon.com/en_pv/elasticloadbalancing/latest/classic/introduction.html). (See the [Spotinst documentation](https://docs.spot.io) for Load Balancer support.)
 	+ For AMI Blue/Green deployment, you must also have:
 		- A pair of  [Target Groups](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html)—typically staging (Stage) and production (Prod)—both with the **instance** target type.
 		- A Load Balancer with listeners for both your Target Groups' ports.
