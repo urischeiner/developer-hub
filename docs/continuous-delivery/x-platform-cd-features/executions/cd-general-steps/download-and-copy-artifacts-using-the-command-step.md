@@ -1,5 +1,5 @@
 ---
-title: Use the Command step to download or copy artifacts and configs, or run scripts
+title: Use the Command step to fetch artifacts, copy configs, and execute scripts.
 description: This topic show you how to use the Command step in SSH and WinRM deployments to run commands on one or more target hosts.
 sidebar_position: 3
 ---
@@ -11,6 +11,10 @@ You can run a script on all hosts, download the deployment artifact, or copy the
 You can also use the Command step on deployment template deployments. Since a deployment template can be used on any host type, the Command step can only be run on the delegate.
 
 ## Command step summary
+
+When you add the Command step, you can select the Command Type you want to run:
+
+<docimage path={require('./static/e5dc1accf1f6efc331493ca186f9797a812e9de15e1419b1ddd07a6ef1240c95.png')} width="60%" height="60%" title="Click to view full size image" />
 
 Let's review the details of the Command step.
 
@@ -32,6 +36,10 @@ For more information, go to:
 
 * [Secure Shell (SSH) deployment tutorial](/docs/continuous-delivery/deploy-srv-diff-platforms/traditional/ssh-ng)
 * [WinRM deployment tutorial](/docs/continuous-delivery/deploy-srv-diff-platforms/traditional/win-rm-tutorial)
+
+### Download command not avaiable on WinRM
+
+The **Download** command is not avaiable on WinRM deployments. Use the **Copy** command instead. 
 
 ### Deployment templates
 
@@ -280,7 +288,7 @@ Legend:
 
 
 
-| **Provider** | **Repository/Package Types** | **Download Artifact****(WinRM or SSH deployment types only)** | **Copy Artifact****(SSH deployment type only)** |
+| **Provider** | **Repository/Package Types** | **Download Artifact** (WinRM or SSH deployment types only) | **Copy Artifact** (SSH deployment type only) |
 | --- | --- | --- | --- |
 | AWS S3 | All | Y | Y |
 | Artifactory (JFrog) | Non-Docker | Y | Y |
