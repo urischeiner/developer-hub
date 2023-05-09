@@ -1,5 +1,5 @@
 ---
-title: Use the Command step to fetch artifacts, copy configs, and execute scripts.
+title: Use the Command step to fetch artifacts, copy configs, and execute scripts
 description: This topic show you how to use the Command step in SSH and WinRM deployments to run commands on one or more target hosts.
 sidebar_position: 3
 ---
@@ -30,12 +30,12 @@ For SSH and WinRM, the Command step(s) is added automatically when you select th
 
 Also, the looping strategy needed to run the Command step on each target host is set automatically to **Repeat**.
 
-You can edit or add any automatically-added Command step.
+You can edit any automatically-added Command step.
 
 For more information, go to:
 
-* [Secure Shell (SSH) deployment tutorial](/docs/continuous-delivery/deploy-srv-diff-platforms/traditional/ssh-ng)
-* [WinRM deployment tutorial](/docs/continuous-delivery/deploy-srv-diff-platforms/traditional/win-rm-tutorial)
+* [Secure Shell (SSH) deployments](/docs/continuous-delivery/deploy-srv-diff-platforms/traditional/ssh-ng)
+* [WinRM deployments](/docs/continuous-delivery/deploy-srv-diff-platforms/traditional/win-rm-tutorial)
 
 ### Download command not avaiable on WinRM
 
@@ -124,7 +124,7 @@ You can use any path on the target hosts you want. Harness will not create the p
 
 Here's an example of the results of a download command:
 
-![](./static/download-and-copy-artifacts-using-the-command-step-10.png)
+<docimage path={require('./static/download-and-copy-artifacts-using-the-command-step-10.png')} width="60%" height="60%" title="Click to view full size image" />
 
 **Deployment Templates:** to run the download command on the target hosts, add the command after the Fetch Instances step. Go to [looping strategy and target hosts](#looping-strategy-and-target-hosts) below for more information
 
@@ -154,11 +154,11 @@ You can use any path on the target hosts you want. Harness will not create the p
 
 Here's an example of the results of a copy artifact command:
 
-![](./static/download-and-copy-artifacts-using-the-command-step-13.png)
+<docimage path={require('./static/download-and-copy-artifacts-using-the-command-step-13.png')} width="60%" height="60%" title="Click to view full size image" />
 
 Here's an example of the results of a copy config command:
 
-![](./static/download-and-copy-artifacts-using-the-command-step-14.png)
+<docimage path={require('./static/download-and-copy-artifacts-using-the-command-step-14.png')} width="60%" height="60%" title="Click to view full size image" />
 
 **Deployment Templates:** to run the download command on the target hosts, add the command after the Fetch Instances step. Go to [looping strategy and target hosts](#looping-strategy-and-target-hosts) below for more information.
 
@@ -185,14 +185,14 @@ You can run a script on all of the target hosts. This is the same as the [shell 
 
 	Here's an example of an executed script command:
 
-	![](./static/download-and-copy-artifacts-using-the-command-step-15.png)
+	<docimage path={require('./static/download-and-copy-artifacts-using-the-command-step-15.png')} width="60%" height="60%" title="Click to view full size image" />
+	
 4. Use **Files and Patterns** to tail files and use the results in your script. For example, check logs and see if a process started successfully and, if so, exit the script.  
 You specify the file to tail, such as `auth.log`, and the pattern to search (grep filter), such as `198.51.100.1` and then in your script you perform an action when the tail output is matched.
-5. For **File to Tail**, enter the name of a file in the Working Directory to tail, such as a log file.
-6. For **Pattern to search**, enter the pattern to search for in the file. Harness uses grep on the pattern.
-7. Use **Deployment Templates** to run the download command on the target hosts, add the command after the Fetch Instances step. Go to [looping strategy and target hosts](#looping-strategy-and-target-hosts) below for more information.
+1. For **File to Tail**, enter the name of a file in the Working Directory to tail, such as a log file.
+2. For **Pattern to search**, enter the pattern to search for in the file. Harness uses grep on the pattern.
 
-## Input variables
+### Input variables
 
 While you can declare a variable in your command script using a Harness expression or string for its value, using input variables provides some additional benefits:
 
@@ -209,7 +209,7 @@ In your script, you declare the variable using the **Name** value.
 
 At deployment runtime, Harness will evaluate the expression and the variable will contain its output.
 
-## Output variables
+### Output variables
 
 Output Variables have a maximum size of 512KB. To export variables from the script to other steps in the stage, you use the **Script Output Variables** option.
 
@@ -242,6 +242,8 @@ For example, it could be `<+steps.Shell_Script.output.outputVariables.newname>`.
 
 Use this option to run the command on the delegate instead of the target hosts.
 
+You can select which delegate to use by entering a delegate selector in **Delegate Selector** in the step's **Advanced** settings.
+
 Download and copy commands aren't typically run on the delegate, but a script is not uncommon.
 
 If you do run the step on the delegate, ensure the **Destination Path** exists on the delegate. 
@@ -268,7 +270,7 @@ When you run the pipeline, you will see the Command step run on each host. For e
 
 ![](./static/download-and-copy-artifacts-using-the-command-step-17.png)
 
-The suffix \`_N` is used to identify each host.
+The suffixes `_0`, `_1` and so on are used to identify each host.
 
 ### Deployment templates
 
@@ -285,29 +287,30 @@ Legend:
 * Y: Yes
 * N: No
 * N/A: Not Applicable
+* **All** includes ZIP, WAR, TAR, Docker, etc.
 
 
 
-| **Provider** | **Repository/Package Types** | **Download Artifact** (WinRM or SSH deployment types only) | **Copy Artifact** (SSH deployment type only) |
-| --- | --- | --- | --- |
-| AWS S3 | All | Y | Y |
-| Artifactory (JFrog) | Non-Docker | Y | Y |
-|  | Docker | N/A | N/A |
-| SMB | IIS related | Y | N/A |
-| SFTP | IIS related | Y | N/A |
-| Jenkins | All | Y | Y |
-| Docker Registry | Docker | N/A | N/A |
-| AWS ECR | Docker | N/A | N/A |
-| Google Cloud Storage | All | N/A | N/A |
-| Google Container Registry | Docker | N/A | N/A |
-| Nexus 2.x/ 3.x | Maven 2.0 | Y | Y |
-|  | NPM | Y | Y |
-|  | NuGet | Y | Y |
-|  | Docker | N/A | N/A |
-| Nexus 2.x/ 3.x | Maven 2.0 | Y | Y |
-|  | NPM | Y | Y |
-|  | NuGet | Y | Y |
-|  | Docker | N/A | N/A |
-| Azure Artifacts | Maven 2.0, NuGet | Y | Y |
-| Custom Repository | All | N/A | N (use the Exec script to use the metadata to copy artifact to target host) |
+|       **Provider**        | **Repository/Package Types** | **Download Artifact** (WinRM or SSH deployment types only) |                **Copy Artifact** (SSH deployment type only)                 |
+| ------------------------- | ---------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------- |
+| AWS S3                    | All                          | Y                                                          | Y                                                                           |
+| Artifactory (JFrog)       | Non-Docker                   | Y                                                          | Y                                                                           |
+|                           | Docker                       | N/A                                                        | N/A                                                                         |
+| SMB                       | IIS related                  | Y                                                          | N/A                                                                         |
+| SFTP                      | IIS related                  | Y                                                          | N/A                                                                         |
+| Jenkins                   | All                          | Y                                                          | Y                                                                           |
+| Docker Registry           | Docker                       | N/A                                                        | N/A                                                                         |
+| AWS ECR                   | Docker                       | N/A                                                        | N/A                                                                         |
+| Google Cloud Storage      | All                          | N/A                                                        | N/A                                                                         |
+| Google Container Registry | Docker                       | N/A                                                        | N/A                                                                         |
+| Nexus 2.x/ 3.x            | Maven 2.0                    | Y                                                          | Y                                                                           |
+|                           | NPM                          | Y                                                          | Y                                                                           |
+|                           | NuGet                        | Y                                                          | Y                                                                           |
+|                           | Docker                       | N/A                                                        | N/A                                                                         |
+| Nexus 2.x/ 3.x            | Maven 2.0                    | Y                                                          | Y                                                                           |
+|                           | NPM                          | Y                                                          | Y                                                                           |
+|                           | NuGet                        | Y                                                          | Y                                                                           |
+|                           | Docker                       | N/A                                                        | N/A                                                                         |
+| Azure Artifacts           | Maven 2.0, NuGet             | Y                                                          | Y                                                                           |
+| Custom Repository         | All                          | N/A                                                        | N (use the Exec script to use the metadata to copy artifact to target host) |
 
