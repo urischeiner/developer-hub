@@ -4,11 +4,11 @@ description: This topic walks you through deploying setting up Harness CD Commun
 sidebar_position: 2
 ---
 
-This quickstart shows you how to set up Harness CD Community Edition locally and create a CD pipeline that deploys a public NGINX image to a local cluster.
+This quickstart shows you how to set up Harness CD Community Edition locally and create a Continuous Delivery (CD) pipeline that deploys a public NGINX image to a local cluster.
 
 Harness CD Community Edition is a lightweight version of Harness that you can download and run on your laptop or any VM with 3GB RAM and 2 CPUs. Harness CD Community Edition is intended to get devs started with Harness quickly without having to sign up for a Harness SaaS account.
 
-For an overview, see [Harness CD Community Edition overview](/docs/continuous-delivery/deploy-srv-diff-platforms/community-ed/harness-community-edition-overview).
+For an overview, go to [Harness CD Community Edition overview](/docs/continuous-delivery/deploy-srv-diff-platforms/community-ed/harness-community-edition-overview).
 
 ## Objectives
 
@@ -28,11 +28,11 @@ You'll learn how to:
 	+ GitHub account.
   	+ You will use your GitHub account to pull a publicly available manifest (`https://github.com/kubernetes/website/blob/main/content/en/examples/application/nginx-app.yaml`).
 	+ Docker Compose Kubernetes is installed and running in Docker Desktop (a new installation of Docker Desktop might need to have Kubernetes enabled in its **Settings**).  
-	  - Docker Compose Kubernetes should have at least 2GB memory and 1 CPU. That will bring the total Docker Desktop resources up to a minimum of **5GB and 3 CPUs**.
+	  - Docker Compose Kubernetes must have at least 2GB memory and 1 CPU. That will bring the total Docker Desktop resources up to a minimum of **5GB and 3 CPUs**.
 	  - If you want to use Minikube instead of Docker Desktop Kubernetes, use Minikube minimum version v1.22.0 or later installed locally.
   	  - Minikube needs 4GB and 4 CPUs: `minikube start --memory 4g --cpus 4`.
 	+ Kubernetes cluster.
-  	+ This is the target cluster for the deployment you will set up in this quickstart. When Docker Compose Kubernetes is installed it comes with a cluster and the **default** namespace. You don't need to make any changes to Docker Compose Kubernetes. Don't have a cluster? Go to [Notes](#notes) below.
+  	+ This is the target cluster for the deployment you will set up in this quickstart. When Docker Compose Kubernetes is installed, it comes with a cluster and the **default** namespace. You don't need to make any changes to Docker Compose Kubernetes. Don't have a cluster? Go to [Notes](#notes) below.
 	+ Review [Harness CD Community Edition overview](/docs/continuous-delivery/deploy-srv-diff-platforms/community-ed/harness-community-edition-overview) and [Harness key concepts](/docs/getting-started/learn-harness-key-concepts) to establish a general understanding of Harness.
 
 The Docker Compose installer is described below, but Harness also supports a [Helm installer](https://github.com/harness/harness-cd-community/blob/main/helm/README.md).
@@ -57,11 +57,9 @@ Harness CD Community Edition has two main components:
   * After you install Harness, you sign up in the Manager at <http://localhost/#/signup>.
   * Pipelines are triggered manually in the Harness Manager or automatically in response to Git events, schedules, new artifacts, and so on.
 * **Harness Delegate:** the Harness Delegate is a software service you install in your environment that connects to the Harness Manager and performs tasks using your container orchestration platforms, artifact repositories, etc. 
-  * You can install a Delegate inline when setting up connections to your resources or separately as needed. This guide will walk you through setting up a Harness Delegate inline.
+  * You can install a delegate inline when setting up connections to your resources or separately as needed. This guide walks you through setting up a Harness Delegate inline.
 
 ## Installation
-
-Installation and deployment should take about 10 minutes.
 
 The Docker Compose installer is described below, but Harness also supports a [Helm installer](https://github.com/harness/harness-cd-community/blob/main/helm/README.md).
 
@@ -75,17 +73,18 @@ Ensure Docker Desktop is running and Docker Desktop Kubernetes is running with i
    git clone https://github.com/harness/harness-cd-community
    ```
 
-  The output will look something like this:
+   The output will look something like this:
 
-  ```
-  Cloning into 'harness-cd-community'...  
-  remote: Enumerating objects: 793, done.  
-  remote: Counting objects: 100% (793/793), done.  
-  remote: Compressing objects: 100% (371/371), done.  
-  remote: Total 793 (delta 497), reused 592 (delta 339), pack-reused 0  
-  Receiving objects: 100% (793/793), 116.39 KiB | 2.42 MiB/s, done.  
-  Resolving deltas: 100% (497/497), done.
-  ```
+     ```
+     Cloning into 'harness-cd-community'...  
+     remote: Enumerating objects: 793, done.  
+     remote: Counting objects: 100% (793/793), done.  
+     remote: Compressing objects: 100% (371/371), done.  
+     remote: Total 793 (delta 497), reused 592 (delta 339), pack-reused 0  
+     Receiving objects: 100% (793/793), 116.39 KiB | 2.42 MiB/s, done.  
+     Resolving deltas: 100% (497/497), done.
+     ```
+  
 2. Change directory to the **harness** folder:
 
    ```
@@ -96,17 +95,17 @@ Ensure Docker Desktop is running and Docker Desktop Kubernetes is running with i
    ```
    docker-compose up -d
    ```
-   Do not try to bring up containers one by one. Harness CD Community Edition is a distributed system with dependencies. The only way to bring it up is using `docker-compose up -d`.
+   Do not try to bring up containers one by one. Harness CD Community Edition is a distributed system with dependencies. The only way to bring it up is to use `docker-compose up -d`.
 
-   The first download can take 3–12 mins (downloading images and starting all containers) depending on the speed of your Internet connection. You won't be able to sign up until all the required containers are up and running.The output will look something like this:
+   The first download (downloading images and starting all containers) takes several minutes,depending on the speed of your internet connection. You won't be able to sign up until all required containers are up and running. The output will look something like this:
 
-   ```
-   [+] Running 13/13  
-   ⠿ Network harness_harness-network       Created                                                                                                                                                  0.1s  
-   ⠿ Container harness_log-service_1       Started                                                                                                                                                  2.9s  
-  ⠿ Container harness_redis_1             Started                                                                                                                                                  2.7s  
-  ...
-  ```
+      ```
+      [+] Running 13/13  
+      ⠿ Network harness_harness-network       Created                                                                                                                                                  0.1s  
+      ⠿ Container harness_log-service_1       Started                                                                                                                                                  2.9s  
+      ⠿ Container harness_redis_1             Started                                                                                                                                                  2.7s  
+     ...
+     ```
 
 4. Run the following command to ensure all services are running:
 
@@ -114,7 +113,7 @@ Ensure Docker Desktop is running and Docker Desktop Kubernetes is running with i
    docker-compose ps
    ```
 
-   All services should show `running (healthy)`. If any show `running (starting)`, wait a minute, and run `docker-compose ps` again until they are all `running (healthy)`.
+   All service must show `running (healthy)`. If any show `running (starting)`, wait a minute, and run `docker-compose ps` again until they are all `running (healthy)`.
 
 5. Run the following command to start the Harness Manager (it will wait until all services are healthy):
 
@@ -136,19 +135,21 @@ Ensure Docker Desktop is running and Docker Desktop Kubernetes is running with i
    wait-for-it.sh: ng-manager:7090 is available after 0 seconds
    ```
 
-   Wait until you see that `ng-manager` is available:
+   Wait until `ng-manager` is available:
 
    ```
    wait-for-it.sh: ng-manager:7090 is available after 0 seconds
    ```
 
-6. In your browser, go to the URL `http://localhost/#/signup`.
+6. In your browser, go to the URL `http://localhost/#/signup`. The Harness CD Community Edition home page opens.
 
-   If you see a 403 error, that just means the Harness Manager service isn't up and running yet. Make sure you ran the wait-for-it.sh script earlier and wait a few minutes: `docker-compose run --rm proxy wait-for-it.sh ng-manager:7090 -t 180`.
+   ![](./static/harness-community-edition-home-page.png)
 
-7. Enter an email address and password and select **Sign up**.
+   If you get a 403 error, that just means the Harness Manager service isn't up and running yet. Make sure you ran the `wait-for-it.sh` script earlier and wait a few minutes: `docker-compose run --rm proxy wait-for-it.sh ng-manager:7090 -t 180`.
 
-   You'll see the CD page:
+7. Enter an email address and password, and then select **Create user**.
+
+   The Continuous Delivery page opens:
    
    ![](./static/harness-community-edition-quickstart-133.png)
 
@@ -273,7 +274,7 @@ Credentials are encrypted and stored locally in the MongoDB service installed as
 
 You'll also install a Harness Kubernetes Delegate in your local Kubernetes cluster.
 
-This Delegate will perform all operations at runtime.
+This delegate will perform all operations at runtime.
 
 #### Connector
 
@@ -289,18 +290,18 @@ This Delegate will perform all operations at runtime.
 10. Select **New Secret Text**.
 11. In **Secret Name**, enter the name **github-pat**.
 12. In **Secret Value**, paste in a GitHub Personal Access Token (PAT). When you're logged into GitHub, these are typically listed at <https://github.com/settings/tokens>.
-  For steps on setting up a GitHub PAT, see [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) from GitHub.
+  For steps on setting up a GitHub PAT, go to [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) from GitHub.
   Ensure you PAT has the **repo** scope selected:
   ![](./static/repoScope.png)
 1. Select **Save**, and then select **Continue**.
 2. In **Connect to the provider**, select **Connect through a Harness Delegate**, and then **Continue**.
 3. In **Delegates Setup**, select **Install a New Delegate**.
 4. Select **Kubernetes**, and then select **Continue**.
-5. Enter a name **quickstart** for the Delegate, select the **Laptop** size, and then select **Continue**.
+5. Enter a name **quickstart** for the delegate, select the **Laptop** size, and then select **Continue**.
 6. Select **Download YAML file**.
-  The YAML file for the Kubernetes Delegate will download to your computer. 
+  The YAML file for the Kubernetes delegate will download to your computer. 
 
-7. Open a terminal and navigate to where the Delegate file is located.If you're using a remote Kubernetes cluster, go to [notes](#notes) below.
+7. Open a terminal and navigate to where the delegate file is located.If you're using a remote Kubernetes cluster, go to [notes](#notes) below.
 
     On a terminal, run this command:
 
@@ -308,11 +309,11 @@ This Delegate will perform all operations at runtime.
     kubectl apply -f harness-delegate.yaml
     ```
 
-    This installs the Delegate into the default cluster that comes with Docker Desktop Kubernetes. It can take a few minutes for the Delegate pod to run.
+    This installs the delegate into the default cluster that comes with Docker Desktop Kubernetes. It can take a few minutes for the delegate pod to run.
 8. Run `kubectl get pods -n harness-delegate-ng` to verify that it is **Ready: 1/1** and **Status: Running**.
 1. Back in Harness, select **Continue**.
-2. Once the Delegate registers, select **Done**.
-3. In **Delegates Setup**, select **Connect only via Delegates which has all of the following tags**, and then select the tag for your new Delegate (**quickstart**).
+2. Once the delegate registers, select **Done**.
+3. In **Delegates Setup**, select **Connect only via Delegates which has all of the following tags**, and then select the tag for your new delegate (**quickstart**).
 4. Select **Save and Continue**.
 5. The **Connection Test** should prove successful. If not, review your credentials.
 6. Select **Finish**.
@@ -333,8 +334,8 @@ Here you'll create a connection to the target cluster for this CD stage.
 1. Select the **Connector** dropdown menu, and then select **New Connector**.
 2. In **Name**, enter **localK8s**, and then select **Continue**.
 3. In **Details**, select **Use the credentials of a specific Harness Delegate**, and then select **Continue**.
-   + If you are running a local Delegate but using a target cluster that does not have a Delegate installed in it, select **Specify master URL and credentials**, and then go to [notes](#notes) below.
-4. In **Delegates Setup**, select **Connect only via Delegates which has all of the following tags**, and then enter and select **quickstart**. The Delegate you added earlier is selected.
+   + If you are running a local delegate but using a target cluster that does not have a delegate installed in it, select **Specify master URL and credentials**, and then go to [notes](#notes) below.
+4. In **Delegates Setup**, select **Connect only via Delegates which has all of the following tags**, and then enter and select **quickstart**. The delegate you added earlier is selected.
 5. Select **Save and Continue**.
 6. In **Connection Test**, select **Finish**.
 
@@ -357,7 +358,7 @@ If you want to save these settings, you can select **Save as Input Set**. Then y
 
    ![](./static/harness-community-edition-quickstart-138.png)
 
-2. Select **Console View** to see more of the logs and watch the deployment in realtime.
+2. Select **Console View** to view more logs and watch the deployment in realtime.
 
 3. In the **Rollout Deployment** step, in **Wait for Steady State**, you'll see that NGINX was deployed successfully:
 
@@ -372,7 +373,7 @@ Now you can use Harness to deploy remotely. Simply follow the same steps but use
 
 To clean up your environment, do the following.
 
-* To delete the Delegate, run the following:
+* To delete the delegate, run the following:
 
   ```
   kubectl delete statefulset -n harness-delegate-ng quickstart
@@ -440,7 +441,7 @@ The following notes will help you if your set up is different from the general s
 
 ### Harness Docker Delegate and the M1 processor
 
-This quickstart uses the Harness Kubernetes Delegate. If you decide to use the Harness Docker Delegate and your laptop uses an M1 processor, edit the Docker Delegate YAML `cpus` to use `1` before installation:
+This quickstart uses the Harness Kubernetes Delegate. If you decide to use the Harness Docker Delegate and your laptop uses an M1 processor, edit the Docker delegate YAML `cpus` to use `1` before installation:
 
 ```yaml
 version: "3.7"  
@@ -455,7 +456,7 @@ services:
 ...
 ```
 
-This is a temporary change. In the next release of Harness CD Community Edition, the Docker Delegate YAML will use `cpus: "1"` by default.
+This is a temporary change. In the next release of Harness CD Community Edition, the Docker delegate YAML will use `cpus: "1"` by default.
 
 ### What if I don't have my own Kubernetes cluster?
 
@@ -464,7 +465,7 @@ You have a few Kubernetes cluster options.
 <details> 
 <summary>Docker Compose Kubernetes</summary>
 
-When Docker Compose Kubernetes is installed it comes with a cluster and the **default** namespace. You don't need to make any changes to Docker Compose Kubernetes. This is recommended.
+When Docker Compose Kubernetes is installed, it comes with a cluster and the **default** namespace. You don't need to make any changes to Docker Compose Kubernetes. This is recommended.
 
 </details> 
 
@@ -482,19 +483,19 @@ If your company uses Kubernetes, they likely have dev or QA accounts on a cloud 
 
 If you don't have access, you can request access to a namespace in an existing cluster. Just ask for access to a namespace and a service account with permission to create entities in the target namespace.
 
-The YAML provided for the Harness Delegate defaults to the `cluster-admin` role because that ensures anything could be applied. If you can't use `cluster-admin` because you are using a cluster in your company, you'll need to edit the Delegate YAML.
+The YAML provided for the Harness Delegate defaults to the `cluster-admin` role because that ensures anything could be applied. If you can't use `cluster-admin` because you are using a cluster in your company, you'll need to edit the delegate YAML.
 
-The set of permissions should include `list`, `get`, `create`, `watch` (to fetch the pod events), and `delete` permissions for each of the entity types Harness uses.
+The set of permissions includes `list`, `get`, `create`, `watch` (to fetch the pod events), and `delete` permissions for each of the entity types Harness uses.
 
 If you don’t want to use `resources: [“*”]` for the Role, you can list out the resources you want to grant. Harness needs `configMap`, `secret`, `event`, `deployment`, and `pod` at a minimum for deployments, as stated above.
 
 </details> 
 
-### What if I have a local cluster for the Delegate but want to deploy to a remote cluster?
+### What if I have a local cluster for the delegate but want to deploy to a remote cluster?
 
 If you can't use a local or remote cluster for both the Harness Delegate and the deployment, you'll be fine.
 
-Install the Delegate locally and then when you set up the Harness Kubernetes Cluster Connector, select **Specify master URL and credentials** and use the target cluster master URL and a Kubernetes service account token from the target cluster to connect.
+Install the delegate locally and then when you set up the Harness Kubernetes Cluster Connector, select **Specify master URL and credentials** and use the target cluster master URL and a Kubernetes service account token from the target cluster to connect.
 
 ![](./static/harness-community-edition-quickstart-139.png)
 
@@ -563,12 +564,12 @@ The `| base64 -d` piping decodes the token. You can now enter it into the Harn
 
 If you are using a remote Kubernetes cluster, you must log into it before you can install the Harness Kubernetes Delegate and deploy to that cluster.
 
-How you connect to the remote cluster depends on the provider. Typically, you will need to install the provider's CLI locally and then use the CLI to connect to the cluster and run the kubectl command to install the Harness Delegate. See the following:
+How you connect to the remote cluster depends on the provider. Typically, you will need to install the provider's CLI locally and then use the CLI to connect to the cluster and run the kubectl command to install the Harness Delegate. Go to the following:
 
 <details> 
 <summary>Azure AKS</summary>
 
-See the Azure doc [Quickstart: Deploy an Azure Kubernetes Service cluster using the Azure CLI](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough) for a good overview.
+Go to the Azure doc [Quickstart: Deploy an Azure Kubernetes Service cluster using the Azure CLI](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough) for a good overview.
 
 The commands will look something like this.
 
@@ -596,7 +597,7 @@ Test the connection:
 kubectl get nodes
 ```
 
-Next, you simply run the command to install the Delegate:
+Next, you simply run the command to install the delegate:
 
 ```
 kubectl apply -f harness-delegate.yaml
@@ -606,9 +607,9 @@ kubectl apply -f harness-delegate.yaml
 <details> 
 <summary>AWS EKS</summary>
 
-See the AWS doc [Connecting a cluster](https://docs.aws.amazon.com/eks/latest/userguide/connecting-cluster.html) for a good overview.
+Go to the AWS doc [Connecting a cluster](https://docs.aws.amazon.com/eks/latest/userguide/connecting-cluster.html) for a good overview.
 
-Once you're connected, you simply run the command to install the Delegate:
+Once you're connected, you simply run the command to install the delegate:
 
 ```
 kubectl apply -f harness-delegate.yaml
@@ -618,7 +619,7 @@ kubectl apply -f harness-delegate.yaml
 <details> 
 <summary>GCP GKE</summary>
 
-See the GCP doc [Install kubectl and configure cluster access](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl) for a good overview.
+Go to the GCP doc [Install kubectl and configure cluster access](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl) for a good overview.
 
 Basically, you just need to install the gcloud CLI as described in [Installing the gcloud CLI](https://cloud.google.com/sdk/docs/install) from GCP.
 
@@ -630,7 +631,7 @@ The command will look something like this.
 gcloud container clusters get-credentials [cluster-name] --zone [zone-name] --project [project-name]
 ```
 
-Once you're connected, you simply run the command to install the Delegate:
+Once you're connected, run the command to install the delegate:
 
 ```
 kubectl apply -f harness-delegate.yaml
