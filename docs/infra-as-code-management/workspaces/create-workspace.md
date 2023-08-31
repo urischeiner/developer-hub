@@ -12,7 +12,7 @@ For example, you can have a single configuration of a Kubernetes cluster and cre
 
 A workspace may have one of the following statuses:
 
-* Active: Sucessfully deployed and running. 
+* Active: Successfully deployed and running. 
 
 * Inactive: Successfully destroyed or was not provisioned.
 
@@ -51,7 +51,8 @@ To create a new workspace, follow these steps:
 6. Select **Save**. 
 
 7. If you need to use either environment or Terraform variables during execution, select the **Variables** tab to define the variables. If Terraform variables are defined and set in Git, then values defined in the workspace take precedence. 
-  A good best practice is to avoid managing Terraform variables in Git, and set them in the workspace instead. This keeps the Git configuration clean and allows you to use the same Git definitions for multiple workspaces. 
+  A good best practice is to avoid managing Terraform variables in Git, and set them in the workspace instead. This keeps the Git configuration clean and allows you to use the same Git definitions for multiple workspaces.
+Variables can be either String, [HCL format] (https://github.com/hashicorp/hcl), [Secret] (https://developer.harness.io/docs/category/secrets), or a reference to another variable, in the same, or different Workspace
 
     ![Workspace variables](./static/workspace-variables.png)
 
